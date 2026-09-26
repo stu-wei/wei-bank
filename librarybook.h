@@ -1,22 +1,32 @@
 ﻿#pragma once
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 using namespace std;
-class LibraryBook {
+
+class LibraryBook
+{
 private:
 	string bookid;
 	string title;
 	string writer;
 	string publisher;
 	double price;
+	int page;
 	int total;
 	int still;
 public:
 	LibraryBook();
-	LibraryBook(string bookid, string t, string w, string pub, double p, int total);
-	void set(string bookid, string t, string w, string pub, double p, int total);
-	string getBook() const;
+	LibraryBook(string bid, string t, string w, string pub, double pr, int pg, int tot);
+
+	void set(string bid, string t, string w, string pub, double pr, int pg, int tot);
+
+	string getBookId() const;
 	string getTitle() const;
+	int getStill() const;
+
+	void inputBookInfo();
+	bool checkIsbnValid() const;
+
 	bool doBorrow();
 	void doReturn();
 	void printInfo() const;
