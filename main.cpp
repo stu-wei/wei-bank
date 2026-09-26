@@ -16,7 +16,7 @@ int main()
 
 	while (true)
 	{
-		cout << "\n========图书馆管理系统========" << endl;
+		cout << "\n===图书馆管理系统===" << endl;
 		cout << "1 录入学生信息" << endl;
 		cout << "2 录入教师信息" << endl;
 		cout << "3 录入一本图书，存入仓库" << endl;
@@ -29,23 +29,18 @@ int main()
 		cout << "10 教师还书（输入图书编号）" << endl;
 		cout << "11 退出程序" << endl;
 		cout << "请输入操作序号：";
-
-		// =========核心修复：清空输入缓冲区，防止无限刷屏=========
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
 		if (!(cin >> op))
 		{
 			cout << "输入错误！请输入数字！" << endl;
 			continue;
 		}
-
 		if (op == 11)
 		{
 			cout << "程序结束" << endl;
 			break;
 		}
-
 		switch (op)
 		{
 		case 1:

@@ -1,7 +1,6 @@
 ﻿#include "teacher.h"
 #include "librarybook.h"
 using namespace std;
-
 Teacher::Teacher()
 {
 	teaId = "";
@@ -10,7 +9,6 @@ Teacher::Teacher()
 	maxBorrow = 8;
 	curBorrow = 0;
 }
-
 void Teacher::inputTeacherInfo()
 {
 	cout << "输入教师工号：";
@@ -24,7 +22,6 @@ void Teacher::inputTeacherInfo()
 	curBorrow = 0;
 	borrowBookIdList.clear();
 }
-
 void Teacher::setTeacherInfo(string id, string name, string dep, int maxBor)
 {
 	teaId = id;
@@ -34,7 +31,6 @@ void Teacher::setTeacherInfo(string id, string name, string dep, int maxBor)
 	curBorrow = 0;
 	borrowBookIdList.clear();
 }
-
 bool Teacher::borrowBook(LibraryBook& book)
 {
 	if (curBorrow >= maxBorrow)
@@ -51,12 +47,11 @@ bool Teacher::borrowBook(LibraryBook& book)
 	{
 		curBorrow++;
 		borrowBookIdList.push_back(book.getBookId());
-		cout << "【教师】借书成功！" << endl;
+		cout << "教师 借书成功！" << endl;
 		return true;
 	}
 	return false;
 }
-
 bool Teacher::returnBook(LibraryBook& book)
 {
 	if (curBorrow <= 0)
@@ -76,26 +71,22 @@ bool Teacher::returnBook(LibraryBook& book)
 		cout << "还书失败：你没有借这本书！" << endl;
 		return false;
 	}
-
 	book.doReturn();
 	curBorrow--;
 	borrowBookIdList.erase(it);
-	cout << "【教师】还书成功！" << endl;
+	cout << "教师 还书成功！" << endl;
 	return true;
 }
-
 void Teacher::showTeacherInfo() const
 {
-	cout << "====教师信息====" << endl;
+	cout << "教师信息" << endl;
 	cout << "工号：" << teaId << " 姓名：" << teaName << " 院系：" << department << endl;
 	cout << "最大可借：" << maxBorrow << "本，已借：" << curBorrow << "本" << endl;
 }
-
 int Teacher::getCurBorrow() const
 {
 	return curBorrow;
 }
-
 int Teacher::getMaxBorrow() const
 {
 	return maxBorrow;
