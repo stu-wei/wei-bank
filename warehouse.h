@@ -1,15 +1,31 @@
 ﻿#pragma once
 #include <iostream>
 #include <vector>
-#include "librarybook.h"
+#include <string>
+#include <fstream>
+#include <stdexcept>
+#include "LibraryResource.h"
+#include "Person.h"
 using namespace std;
 
-class Warehouse
+class warehouse
 {
 private:
-	vector<LibraryBook> bookList;
+	vector<LibraryResource*> resList;
+	vector<Person*> userList;
 public:
-	void addBook(const LibraryBook& bk);
-	void showAllBooks() const;
-	LibraryBook* findBookById(const string& bid);
+	warehouse();
+	~warehouse();
+
+	void addResource(LibraryResource* p);
+	void addUser(Person* p);
+
+	LibraryResource* findResById(const string& rid);
+	Person* findUserById(const string& uid);
+
+	void showAllResource() const;
+	void showAllUser() const;
+
+	bool loadAllData();
+	bool saveAllData();
 };

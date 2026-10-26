@@ -1,65 +1,79 @@
 ﻿#include "librarybook.h"
 using namespace std;
-
-LibraryBook::LibraryBook()
+librarybook::librarybook()
 {
-	bookid = "";
+	resId = "";
 	title = "";
-	writer = "";
+	author = "";
 	publisher = "";
-	price = 0;
-	page = 0;
 	total = 0;
 	still = 0;
+	price = 0;
+	page = 0;
 }
-
-LibraryBook::LibraryBook(string bid, string t, string w, string pub, double pr, int pg, int tot)
+librarybook::librarybook(string bid, string t, string w, string pub, double pr, int pg, int tot)
 {
-	bookid = bid;
+	resId = bid;
 	title = t;
-	writer = w;
+	author = w;
 	publisher = pub;
+	total = tot;
+	still = tot;
 	price = pr;
 	page = pg;
-	total = tot;
-	still = total;
 }
-
-void LibraryBook::set(string bid, string t, string w, string pub, double pr, int pg, int tot)
+void librarybook::set(string bid, string t, string w, string pub, double pr, int pg, int tot)
 {
-	bookid = bid;
+	resId = bid;
 	title = t;
-	writer = w;
+	author = w;
 	publisher = pub;
+	total = tot;
+	still = tot;
 	price = pr;
 	page = pg;
-	total = tot;
-	still = total;
 }
-
-string LibraryBook::getBookId() const
+bool librarybook::checkIsbnValid() const
 {
-	return bookid;
+	if (resId.empty())
+		return false;
+	return true;
 }
-
-string LibraryBook::getTitle() const
+librarybook::~librarybook()
 {
-	return title;
 }
-
-int LibraryBook::getStill() const
+bool librarybook::doBorrow()
 {
-	return still;
+	if (still > 0)
+	{
+		still--;
+		return true;
+	}
+	return false;
+}
+void librarybook::doReturn()
+{
+	if (still < total)
+		still++;
 }
 
-void LibraryBook::inputBookInfo()
+bool librarybook::isEBook() const 
+{
+	return false;
+}
+double librarybook::getPrice() const
+{
+	return price;
+}
+
+void librarybook::inputInfo()
 {
 	cout << "图书编号：";
-	cin >> bookid;
+	cin >> resId;
 	cout << "书名：";
 	cin >> title;
 	cout << "作者：";
-	cin >> writer;
+	cin >> author;
 	cout << "出版社：";
 	cin >> publisher;
 	cout << "价格：";
@@ -70,36 +84,12 @@ void LibraryBook::inputBookInfo()
 	cin >> total;
 	still = total;
 }
-
-bool LibraryBook::checkIsbnValid() const
-{
-	if (bookid.empty())
-		return false;
-	return true;
-}
-
-bool LibraryBook::doBorrow()
-{
-	if (still > 0)
-	{
-		still--;
-		return true;
-	}
-	return false;
-}
-
-void LibraryBook::doReturn()
-{
-	if (still < total)
-		still++;
-}
-
-void LibraryBook::printInfo() const
+void librarybook::printInfo() const
 {
 	cout << "-------------------------" << endl;
-	cout << "图书编号：" << bookid << endl;
+	cout << "图书编号：" << resId << endl;
 	cout << "书名：" << title << endl;
-	cout << "作者：" << writer << endl;
+	cout << "作者：" << author << endl;
 	cout << "出版社：" << publisher << endl;
 	cout << "价格：" << price << "元" << endl;
 	cout << "页数：" << page << "页" << endl;

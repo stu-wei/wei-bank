@@ -1,29 +1,14 @@
 ﻿#pragma once
-#include <iostream>
-#include <string>
-#include <vector>
+#include "Person.h"
 using namespace std;
-
-class LibraryBook;
-
-class Teacher
+class teacher : public Person
 {
 private:
-	string teaId;
-	string teaName;
-	string department;
-	int maxBorrow;
-	int curBorrow;
-	vector<string> borrowBookIdList;
+	string jobTitle;
+	friend class warehouse;
 public:
-	Teacher();
-	void inputTeacherInfo();
-	void setTeacherInfo(string id, string name, string dep, int maxBor);
-
-	bool borrowBook(LibraryBook& book);
-	bool returnBook(LibraryBook& book);
-
-	void showTeacherInfo() const;
-	int getCurBorrow() const;
-	int getMaxBorrow() const;
+	teacher();
+	virtual ~teacher() override;
+	void inputInfo();
+	virtual void showInfo() const override;
 };

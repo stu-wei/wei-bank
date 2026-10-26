@@ -1,33 +1,24 @@
 ﻿#pragma once
 #include <iostream>
 #include <string>
+#include "LibraryResource.h"
 using namespace std;
-
-class LibraryBook
+class librarybook : public LibraryResource
 {
 private:
-	string bookid;
-	string title;
-	string writer;
-	string publisher;
 	double price;
 	int page;
-	int total;
-	int still;
+	friend class warehouse;
 public:
-	LibraryBook();
-	LibraryBook(string bid, string t, string w, string pub, double pr, int pg, int tot);
-
+	librarybook();
+	librarybook(string bid, string t, string w, string pub, double pr, int pg, int tot);
 	void set(string bid, string t, string w, string pub, double pr, int pg, int tot);
-
-	string getBookId() const;
-	string getTitle() const;
-	int getStill() const;
-
-	void inputBookInfo();
 	bool checkIsbnValid() const;
-
-	bool doBorrow();
-	void doReturn();
-	void printInfo() const;
+	virtual ~librarybook() override;
+	virtual void inputInfo() override;
+	virtual void printInfo() const override;
+	virtual bool doBorrow() override;
+	virtual void doReturn() override;
+	virtual bool isEBook() const override;
+	virtual double getPrice() const override;
 };
